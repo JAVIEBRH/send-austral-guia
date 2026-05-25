@@ -9,446 +9,120 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
   :root {
-    --brand: #1a2332;
-    --brand-light: #2e3f57;
-    --accent: #c8a96e;
-    --accent-soft: #f5eedd;
-    --bg: #fafaf8;
-    --card: #ffffff;
-    --green: #22c55e;
-    --green-soft: #dcfce7;
-    --ink: #111827;
-    --ink-2: #4b5563;
-    --ink-3: #9ca3af;
-    --border: #e5e7eb;
-    --radius: 16px;
-    --font: 'Inter', system-ui, sans-serif;
+    --brand: #1a2332; --brand-light: #2e3f57; --accent: #c8a96e;
+    --accent-soft: #f5eedd; --bg: #fafaf8; --card: #ffffff;
+    --green: #22c55e; --green-soft: #dcfce7;
+    --ink: #111827; --ink-2: #4b5563; --ink-3: #9ca3af;
+    --border: #e5e7eb; --radius: 16px; --font: 'Inter', system-ui, sans-serif;
   }
+  body { font-family: var(--font); background: var(--bg); color: var(--ink); line-height: 1.6; font-size: 15px; max-width: 480px; margin: 0 auto; padding-bottom: 40px; }
 
-  body {
-    font-family: var(--font);
-    background: var(--bg);
-    color: var(--ink);
-    line-height: 1.6;
-    font-size: 15px;
-    max-width: 480px;
-    margin: 0 auto;
-    padding-bottom: 40px;
-  }
-
-  .header {
-    background: var(--brand);
-    padding: 28px 24px 24px;
-    position: relative;
-    overflow: hidden;
-  }
-  .header::after {
-    content: '';
-    position: absolute;
-    bottom: -40px; right: -40px;
-    width: 160px; height: 160px;
-    border-radius: 50%;
-    background: rgba(200,169,110,.12);
-  }
-  .brand-row {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin-bottom: 20px;
-  }
-  .brand-mark {
-    width: 32px; height: 32px;
-    background: var(--accent);
-    border-radius: 8px;
-    display: grid;
-    place-items: center;
-    font-size: 14px;
-    font-weight: 800;
-    color: var(--brand);
-    flex-shrink: 0;
-  }
-  .brand-name {
-    font-size: 13px;
-    font-weight: 700;
-    color: rgba(255,255,255,.7);
-    letter-spacing: .04em;
-  }
-  .header-title {
-    font-size: 1.5rem;
-    font-weight: 800;
-    color: white;
-    line-height: 1.2;
-    margin-bottom: 6px;
-  }
-  .header-sub {
-    font-size: 13px;
-    color: rgba(255,255,255,.55);
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    flex-wrap: wrap;
-  }
+  /* ── Header ── */
+  .header { background: var(--brand); padding: 28px 24px 24px; position: relative; overflow: hidden; }
+  .header::after { content: ''; position: absolute; bottom: -40px; right: -40px; width: 160px; height: 160px; border-radius: 50%; background: rgba(200,169,110,.12); }
+  .brand-row { display: flex; align-items: center; gap: 10px; margin-bottom: 20px; }
+  .brand-mark { width: 32px; height: 32px; background: var(--accent); border-radius: 8px; display: grid; place-items: center; font-size: 14px; font-weight: 800; color: var(--brand); flex-shrink: 0; }
+  .brand-name { font-size: 13px; font-weight: 700; color: rgba(255,255,255,.7); letter-spacing: .04em; }
+  .header-title { font-size: 1.5rem; font-weight: 800; color: white; line-height: 1.2; margin-bottom: 6px; }
+  .header-sub { font-size: 13px; color: rgba(255,255,255,.55); display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
   .dot-sep { color: rgba(255,255,255,.25); }
 
-  .quick-tiles {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 10px;
-    padding: 16px 16px 4px;
-  }
-  .tile {
-    background: var(--card);
-    border-radius: 12px;
-    padding: 14px 16px;
-    border: 1px solid var(--border);
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-  }
+  /* ── Tiles ── */
+  .quick-tiles { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; padding: 16px 16px 4px; }
+  .tile { background: var(--card); border-radius: 12px; padding: 14px 16px; border: 1px solid var(--border); display: flex; flex-direction: column; gap: 4px; }
   .tile-icon { font-size: 20px; margin-bottom: 2px; }
-  .tile-label {
-    font-size: 10px;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: .08em;
-    color: var(--ink-3);
-  }
-  .tile-value {
-    font-size: 15px;
-    font-weight: 700;
-    color: var(--ink);
-    line-height: 1.3;
-  }
+  .tile-label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; color: var(--ink-3); }
+  .tile-value { font-size: 15px; font-weight: 700; color: var(--ink); line-height: 1.3; }
   .tile-sub { font-size: 11px; color: var(--ink-3); }
-
-  .wifi-tile {
-    grid-column: 1 / -1;
-    background: var(--brand);
-    border-color: var(--brand);
-    flex-direction: row;
-    align-items: center;
-    gap: 14px;
-  }
+  .wifi-tile { grid-column: 1 / -1; background: var(--brand); border-color: var(--brand); flex-direction: row; align-items: center; gap: 14px; }
   .wifi-tile .tile-label { color: rgba(255,255,255,.5); }
   .wifi-tile .tile-value { color: white; font-size: 1.1rem; letter-spacing: .04em; }
   .wifi-tile .tile-sub { color: rgba(255,255,255,.4); }
   .wifi-tile .tile-icon { font-size: 24px; }
 
+  /* ── Sections ── */
   .section { padding: 20px 16px 0; }
-  .section-title {
-    font-size: 11px;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: .1em;
-    color: var(--ink-3);
-    margin-bottom: 12px;
-    padding-left: 4px;
-  }
-
-  .card {
-    background: var(--card);
-    border-radius: var(--radius);
-    border: 1px solid var(--border);
-    overflow: hidden;
-    margin-bottom: 10px;
-  }
-
+  .section-title { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .1em; color: var(--ink-3); margin-bottom: 12px; padding-left: 4px; }
+  .card { background: var(--card); border-radius: var(--radius); border: 1px solid var(--border); overflow: hidden; margin-bottom: 10px; }
   .item-list { display: flex; flex-direction: column; }
-  .item {
-    display: flex;
-    align-items: flex-start;
-    gap: 14px;
-    padding: 14px 16px;
-    border-bottom: 1px solid var(--border);
-    text-decoration: none;
-    color: inherit;
-  }
+  .item { display: flex; align-items: flex-start; gap: 14px; padding: 14px 16px; border-bottom: 1px solid var(--border); text-decoration: none; color: inherit; }
   .item:last-child { border-bottom: none; }
-  .item-emoji {
-    font-size: 20px;
-    width: 36px;
-    height: 36px;
-    display: grid;
-    place-items: center;
-    background: var(--bg);
-    border-radius: 8px;
-    flex-shrink: 0;
-  }
+  .item-emoji { font-size: 20px; width: 36px; height: 36px; display: grid; place-items: center; background: var(--bg); border-radius: 8px; flex-shrink: 0; }
   .item-body { flex: 1; min-width: 0; }
   .item-label { font-size: 14px; font-weight: 600; color: var(--ink); }
   .item-desc { font-size: 12.5px; color: var(--ink-2); line-height: 1.45; margin-top: 2px; }
 
-  .alert-card {
-    border-radius: var(--radius);
-    padding: 14px 16px;
-    margin-bottom: 10px;
-    display: flex;
-    gap: 12px;
-    align-items: flex-start;
-    border: 1px solid;
-  }
+  /* ── Alerts ── */
+  .alert-card { border-radius: var(--radius); padding: 14px 16px; margin-bottom: 10px; display: flex; gap: 12px; align-items: flex-start; border: 1px solid; }
   .alert-card.green { background: var(--green-soft); border-color: #bbf7d0; }
   .alert-card.amber { background: #fef3c7; border-color: #fde68a; }
   .alert-card .alert-emoji { font-size: 20px; flex-shrink: 0; }
   .alert-card .alert-text { font-size: 13.5px; color: var(--ink-2); line-height: 1.5; }
   .alert-card .alert-text strong { color: var(--ink); }
 
-  .lugar-card {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 14px 16px;
-    margin-bottom: 8px;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-  }
+  /* ── Lugar cards ── */
+  .lugar-card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 14px 16px; margin-bottom: 8px; display: flex; align-items: center; gap: 12px; }
   .lugar-emoji { font-size: 22px; flex-shrink: 0; }
   .lugar-body { flex: 1; }
   .lugar-name { font-size: 14px; font-weight: 600; color: var(--ink); }
   .lugar-detail { font-size: 12px; color: var(--ink-3); margin-top: 2px; }
-  .lugar-badge {
-    font-size: 10px;
-    font-weight: 700;
-    padding: 3px 8px;
-    border-radius: 99px;
-    background: var(--green-soft);
-    color: #15803d;
-    white-space: nowrap;
-  }
-  .lugar-badge.pending {
-    background: #fef3c7;
-    color: #b45309;
-  }
+  .lugar-badge { font-size: 10px; font-weight: 700; padding: 3px 8px; border-radius: 99px; background: var(--green-soft); color: #15803d; white-space: nowrap; }
+  .lugar-badge.pending { background: #fef3c7; color: #b45309; }
 
-  .rule-item {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    padding: 12px 16px;
-    border-bottom: 1px solid var(--border);
-    font-size: 14px;
-    color: var(--ink-2);
-  }
+  /* ── Rules ── */
+  .rule-item { display: flex; align-items: center; gap: 12px; padding: 12px 16px; border-bottom: 1px solid var(--border); font-size: 14px; color: var(--ink-2); }
   .rule-item:last-child { border-bottom: none; }
   .rule-emoji { font-size: 18px; width: 28px; text-align: center; flex-shrink: 0; }
 
-  .cta-contact {
-    margin: 20px 16px 0;
-    background: var(--brand);
-    border-radius: var(--radius);
-    padding: 20px;
-    display: flex;
-    align-items: center;
-    gap: 16px;
-    text-decoration: none;
-  }
-  .cta-icon {
-    width: 44px; height: 44px;
-    background: rgba(255,255,255,.1);
-    border-radius: 50%;
-    display: grid;
-    place-items: center;
-    font-size: 22px;
-    flex-shrink: 0;
-  }
+  /* ── CTA ── */
+  .cta-contact { margin: 20px 16px 0; background: var(--brand); border-radius: var(--radius); padding: 20px; display: flex; align-items: center; gap: 16px; text-decoration: none; }
+  .cta-icon { width: 44px; height: 44px; background: rgba(255,255,255,.1); border-radius: 50%; display: grid; place-items: center; font-size: 22px; flex-shrink: 0; }
   .cta-body { flex: 1; }
   .cta-label { font-size: 11px; font-weight: 600; color: rgba(255,255,255,.5); text-transform: uppercase; letter-spacing: .08em; margin-bottom: 3px; }
   .cta-value { font-size: 16px; font-weight: 700; color: white; }
   .cta-sub { font-size: 12px; color: rgba(255,255,255,.45); margin-top: 2px; }
 
-  .footer {
-    padding: 24px 16px 0;
-    text-align: center;
-  }
-  .footer-brand {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    margin-bottom: 8px;
-  }
-  .footer-mark {
-    width: 24px; height: 24px;
-    background: var(--accent);
-    border-radius: 6px;
-    display: grid;
-    place-items: center;
-    font-size: 10px;
-    font-weight: 800;
-    color: var(--brand);
-    cursor: pointer;
-    user-select: none;
-    -webkit-user-select: none;
-  }
+  /* ── Footer ── */
+  .footer { padding: 24px 16px 0; text-align: center; }
+  .footer-brand { display: inline-flex; align-items: center; gap: 8px; margin-bottom: 8px; }
+  .footer-mark { width: 24px; height: 24px; background: var(--accent); border-radius: 6px; display: grid; place-items: center; font-size: 10px; font-weight: 800; color: var(--brand); cursor: pointer; user-select: none; -webkit-user-select: none; }
   .footer-name { font-size: 12px; font-weight: 700; color: var(--ink-3); }
   .footer-tagline { font-size: 11px; color: var(--ink-3); }
 
   /* ── Edit overlay ── */
-  #sa-overlay {
-    display: none;
-    position: fixed;
-    inset: 0;
-    z-index: 9000;
-    background: rgba(0,0,0,.55);
-    align-items: flex-end;
-    justify-content: center;
-  }
+  #sa-overlay { display: none; position: fixed; inset: 0; z-index: 9000; background: rgba(0,0,0,.55); align-items: flex-end; justify-content: center; }
   #sa-overlay.visible { display: flex; }
-
-  .sa-sheet {
-    background: #fff;
-    border-radius: 20px 20px 0 0;
-    width: 100%;
-    max-width: 480px;
-    max-height: 92vh;
-    overflow-y: auto;
-    padding: 0 0 32px;
-    animation: slideUp .25s ease;
-  }
-  @keyframes slideUp {
-    from { transform: translateY(40px); opacity: 0; }
-    to   { transform: translateY(0);    opacity: 1; }
-  }
-
-  .sa-sheet-handle {
-    width: 36px; height: 4px;
-    background: #e5e7eb;
-    border-radius: 2px;
-    margin: 12px auto 0;
-  }
-
-  .sa-sheet-head {
-    padding: 16px 20px 12px;
-    border-bottom: 1px solid #f3f4f6;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
+  .sa-sheet { background: #fff; border-radius: 20px 20px 0 0; width: 100%; max-width: 480px; max-height: 92vh; overflow-y: auto; padding: 0 0 40px; animation: slideUp .25s ease; }
+  @keyframes slideUp { from { transform: translateY(40px); opacity:0; } to { transform: translateY(0); opacity:1; } }
+  .sa-sheet-handle { width: 36px; height: 4px; background: #e5e7eb; border-radius: 2px; margin: 12px auto 0; }
+  .sa-sheet-head { padding: 16px 20px 12px; border-bottom: 1px solid #f3f4f6; display: flex; align-items: center; justify-content: space-between; }
   .sa-sheet-head h2 { font-size: 16px; font-weight: 700; color: var(--ink); }
-  .sa-close-btn {
-    width: 32px; height: 32px;
-    background: #f3f4f6;
-    border: none;
-    border-radius: 50%;
-    display: grid;
-    place-items: center;
-    font-size: 16px;
-    cursor: pointer;
-    color: var(--ink-2);
-  }
+  .sa-close-btn { width: 32px; height: 32px; background: #f3f4f6; border: none; border-radius: 50%; display: grid; place-items: center; font-size: 16px; cursor: pointer; color: var(--ink-2); }
 
-  /* password screen */
+  /* password */
   #sa-pw-screen { padding: 24px 20px 0; }
-  .sa-pw-desc {
-    font-size: 13.5px;
-    color: var(--ink-2);
-    margin-bottom: 18px;
-    line-height: 1.5;
-  }
+  .sa-pw-desc { font-size: 13.5px; color: var(--ink-2); margin-bottom: 18px; line-height: 1.5; }
   .sa-pw-desc strong { color: var(--ink); }
-  .sa-input-wrap { position: relative; margin-bottom: 12px; }
-  .sa-input {
-    width: 100%;
-    padding: 12px 14px;
-    border: 1.5px solid var(--border);
-    border-radius: 10px;
-    font-family: var(--font);
-    font-size: 15px;
-    color: var(--ink);
-    outline: none;
-    transition: border-color .15s;
-  }
+  .sa-pw-error { display: none; font-size: 12.5px; color: #dc2626; margin-bottom: 12px; padding: 8px 12px; background: #fef2f2; border-radius: 8px; }
+
+  /* form */
+  #sa-edit-screen { padding: 0 20px; }
+  .sa-section-head { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; color: var(--ink-3); padding: 18px 0 8px; margin-top: 4px; border-top: 1px solid #f3f4f6; }
+  .sa-section-head:first-child { border-top: none; padding-top: 12px; }
+  .sa-field { margin-bottom: 12px; }
+  .sa-field label { display: block; font-size: 11px; font-weight: 600; color: var(--ink-2); margin-bottom: 5px; }
+  .sa-input { width: 100%; padding: 10px 12px; border: 1.5px solid var(--border); border-radius: 10px; font-family: var(--font); font-size: 14px; color: var(--ink); outline: none; transition: border-color .15s; background: #fff; }
   .sa-input:focus { border-color: var(--brand); }
-  .sa-pw-error {
-    display: none;
-    font-size: 12.5px;
-    color: #dc2626;
-    margin-bottom: 12px;
-    padding: 8px 12px;
-    background: #fef2f2;
-    border-radius: 8px;
-  }
-  .sa-btn-primary {
-    width: 100%;
-    padding: 13px;
-    background: var(--brand);
-    color: white;
-    border: none;
-    border-radius: 10px;
-    font-family: var(--font);
-    font-size: 15px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: background .15s;
-  }
-  .sa-btn-primary:active { background: #0f1720; }
-
-  /* edit form */
-  #sa-edit-screen { display: none; padding: 8px 20px 0; }
-  .sa-field { margin-bottom: 16px; }
-  .sa-field label {
-    display: block;
-    font-size: 11px;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: .07em;
-    color: var(--ink-3);
-    margin-bottom: 6px;
-  }
-  .sa-field textarea.sa-input { resize: vertical; min-height: 70px; }
-
-  .sa-save-row {
-    display: flex;
-    gap: 10px;
-    margin-top: 8px;
-    padding-top: 16px;
-    border-top: 1px solid #f3f4f6;
-  }
-  .sa-btn-cancel {
-    flex: 1;
-    padding: 12px;
-    background: #f3f4f6;
-    color: var(--ink-2);
-    border: none;
-    border-radius: 10px;
-    font-family: var(--font);
-    font-size: 14px;
-    font-weight: 600;
-    cursor: pointer;
-  }
-  .sa-btn-save {
-    flex: 2;
-    padding: 12px;
-    background: var(--green);
-    color: white;
-    border: none;
-    border-radius: 10px;
-    font-family: var(--font);
-    font-size: 14px;
-    font-weight: 700;
-    cursor: pointer;
-    transition: background .15s;
-  }
-  .sa-btn-save:active { background: #16a34a; }
-
-  .sa-saved-msg {
-    display: none;
-    text-align: center;
-    font-size: 13px;
-    color: #15803d;
-    font-weight: 600;
-    margin-top: 10px;
-  }
-  .sa-hint {
-    font-size: 11.5px;
-    color: var(--ink-3);
-    text-align: center;
-    margin-top: 20px;
-    padding-top: 16px;
-    border-top: 1px solid #f3f4f6;
-  }
+  .sa-field textarea.sa-input { resize: vertical; min-height: 60px; }
+  .sa-save-row { display: flex; gap: 10px; margin-top: 16px; padding-top: 16px; border-top: 1px solid #f3f4f6; }
+  .sa-btn-cancel { flex: 1; padding: 12px; background: #f3f4f6; color: var(--ink-2); border: none; border-radius: 10px; font-family: var(--font); font-size: 14px; font-weight: 600; cursor: pointer; }
+  .sa-btn-save { flex: 2; padding: 12px; background: var(--green); color: white; border: none; border-radius: 10px; font-family: var(--font); font-size: 14px; font-weight: 700; cursor: pointer; }
+  .sa-btn-save:disabled { opacity: .6; }
+  .sa-btn-primary { width: 100%; padding: 13px; background: var(--brand); color: white; border: none; border-radius: 10px; font-family: var(--font); font-size: 15px; font-weight: 600; cursor: pointer; }
+  .sa-saved-msg { display: none; text-align: center; font-size: 13px; color: #15803d; font-weight: 600; margin-top: 12px; }
+  .sa-err-msg { display: none; text-align: center; font-size: 12.5px; color: #dc2626; margin-top: 8px; background: #fef2f2; padding: 8px 12px; border-radius: 8px; }
+  .sa-hint { font-size: 11.5px; color: var(--ink-3); text-align: center; margin-top: 14px; }
 </style>
 </head>
 <body>
@@ -480,33 +154,33 @@
   <div class="tile">
     <div class="tile-icon">🔑</div>
     <div class="tile-label">Check-in</div>
-    <div class="tile-value">Desde 15:00</div>
-    <div class="tile-sub">Teclado numérico</div>
+    <div class="tile-value" id="checkin-time">Desde 15:00</div>
+    <div class="tile-sub" id="checkin-note">Teclado numérico</div>
   </div>
   <div class="tile">
     <div class="tile-icon">🕙</div>
     <div class="tile-label">Check-out</div>
-    <div class="tile-value">Hasta 11:00</div>
-    <div class="tile-sub">Dejar llave en la puerta</div>
+    <div class="tile-value" id="checkout-time">Hasta 11:00</div>
+    <div class="tile-sub" id="checkout-note">Dejar llave en la puerta</div>
   </div>
   <div class="tile">
     <div class="tile-icon">👥</div>
     <div class="tile-label">Capacidad</div>
-    <div class="tile-value">7 huéspedes</div>
-    <div class="tile-sub">3 hab · 4 camas · 1 baño</div>
+    <div class="tile-value" id="capacity-value">7 huéspedes</div>
+    <div class="tile-sub" id="capacity-sub">3 hab · 4 camas · 1 baño</div>
   </div>
   <div class="tile">
     <div class="tile-icon">🚗</div>
     <div class="tile-label">Estacionamiento</div>
     <div class="tile-value">Incluido</div>
-    <div class="tile-sub">Compartido con Diego</div>
+    <div class="tile-sub" id="parking-note">Compartido con Diego</div>
   </div>
 </div>
 
 <div class="section">
   <div class="alert-card amber">
     <span class="alert-emoji">ℹ️</span>
-    <span class="alert-text"><strong>Espacio compartido:</strong> La lavandería y el estacionamiento son compartidos con Diego, quien vive en una casa independiente dentro del mismo terreno.</span>
+    <span class="alert-text" id="shared-alert"><strong>Espacio compartido:</strong> La lavandería y el estacionamiento son compartidos con Diego, quien vive en una casa independiente dentro del mismo terreno.</span>
   </div>
 </div>
 
@@ -518,35 +192,35 @@
         <div class="item-emoji">🔥</div>
         <div class="item-body">
           <div class="item-label">Parrilla disponible</div>
-          <div class="item-desc">Disponible en el patio. Consulta a Diego por el carbón. Ideal para un asado con la familia.</div>
+          <div class="item-desc" id="parrilla-desc">Disponible en el patio. Consulta a Diego por el carbón. Ideal para un asado con la familia.</div>
         </div>
       </div>
       <div class="item">
         <div class="item-emoji">🏓</div>
         <div class="item-body">
           <div class="item-label">Mesa de ping pong</div>
-          <div class="item-desc">Disponible en el patio exterior. Paletas en la casa.</div>
+          <div class="item-desc" id="pingpong-desc">Disponible en el patio exterior. Paletas en la casa.</div>
         </div>
       </div>
       <div class="item">
         <div class="item-emoji">🍳</div>
         <div class="item-body">
           <div class="item-label">Cocina completamente equipada</div>
-          <div class="item-desc">Ollas, sartenes, utensilios, microondas. Todo disponible para cocinar.</div>
+          <div class="item-desc" id="cocina-desc">Ollas, sartenes, utensilios, microondas. Todo disponible para cocinar.</div>
         </div>
       </div>
       <div class="item">
         <div class="item-emoji">👕</div>
         <div class="item-body">
           <div class="item-label">Lavadora</div>
-          <div class="item-desc">Compartida con el propietario. Coordina horario con Diego si la necesitas.</div>
+          <div class="item-desc" id="lavadora-desc">Compartida con el propietario. Coordina horario con Diego si la necesitas.</div>
         </div>
       </div>
       <div class="item">
         <div class="item-emoji">💻</div>
         <div class="item-body">
           <div class="item-label">Zona de trabajo</div>
-          <div class="item-desc">Escritorio y silla disponibles. WiFi de buena velocidad para videollamadas.</div>
+          <div class="item-desc" id="workspace-desc">Escritorio y silla disponibles. WiFi de buena velocidad para videollamadas.</div>
         </div>
       </div>
     </div>
@@ -557,12 +231,12 @@
   <div class="section-title">Reglas de la casa</div>
   <div class="card">
     <div class="item-list">
-      <div class="rule-item"><span class="rule-emoji">🚭</span> No fumar dentro de la propiedad</div>
-      <div class="rule-item"><span class="rule-emoji">🐾</span> No se admiten mascotas sin autorización previa</div>
-      <div class="rule-item"><span class="rule-emoji">🎉</span> No se permiten fiestas ni eventos no coordinados</div>
-      <div class="rule-item"><span class="rule-emoji">🔇</span> Silencio después de las 23:00</div>
-      <div class="rule-item"><span class="rule-emoji">👥</span> Máximo 7 huéspedes</div>
-      <div class="rule-item"><span class="rule-emoji">🔒</span> Cerrar con llave al salir</div>
+      <div class="rule-item"><span class="rule-emoji">🚭</span><span id="rule-1"> No fumar dentro de la propiedad</span></div>
+      <div class="rule-item"><span class="rule-emoji">🐾</span><span id="rule-2"> No se admiten mascotas sin autorización previa</span></div>
+      <div class="rule-item"><span class="rule-emoji">🎉</span><span id="rule-3"> No se permiten fiestas ni eventos no coordinados</span></div>
+      <div class="rule-item"><span class="rule-emoji">🔇</span><span id="rule-4"> Silencio después de las 23:00</span></div>
+      <div class="rule-item"><span class="rule-emoji">👥</span><span id="rule-5"> Máximo 7 huéspedes</span></div>
+      <div class="rule-item"><span class="rule-emoji">🔒</span><span id="rule-6"> Cerrar con llave al salir</span></div>
     </div>
   </div>
 </div>
@@ -605,7 +279,7 @@
     <div class="lugar-emoji">⚽</div>
     <div class="lugar-body">
       <div class="lugar-name">Estadio Nacional</div>
-      <div class="lugar-detail">8 minutos en auto · Partidos, shows y eventos</div>
+      <div class="lugar-detail" id="estadio-detail">8 minutos en auto · Partidos, shows y eventos</div>
     </div>
   </div>
   <div class="lugar-card">
@@ -626,21 +300,21 @@
         <div class="item-emoji">🚗</div>
         <div class="item-body">
           <div class="item-label">En auto</div>
-          <div class="item-desc">15 minutos. Acceso directo a autopistas principales.</div>
+          <div class="item-desc" id="auto-desc">15 minutos. Acceso directo a autopistas principales.</div>
         </div>
       </div>
       <div class="item">
         <div class="item-emoji">🚌</div>
         <div class="item-body">
           <div class="item-label">Transporte público</div>
-          <div class="item-desc">Red de buses Transantiago con acceso cercano.</div>
+          <div class="item-desc" id="transporte-desc">Red de buses Transantiago con acceso cercano.</div>
         </div>
       </div>
       <div class="item">
         <div class="item-emoji">📱</div>
         <div class="item-body">
           <div class="item-label">Uber / inDrive</div>
-          <div class="item-desc">Disponible 24 hrs. Al centro aprox. $3.000–$6.000 CLP.</div>
+          <div class="item-desc" id="uber-desc">Disponible 24 hrs. Al centro aprox. $3.000–$6.000 CLP.</div>
         </div>
       </div>
     </div>
@@ -652,7 +326,7 @@
   <div class="cta-body">
     <div class="cta-label">¿Necesitas ayuda?</div>
     <div class="cta-value">Escríbele a Diego</div>
-    <div class="cta-sub">Responde en menos de 1 hora · WhatsApp</div>
+    <div class="cta-sub" id="cta-sub">Responde en menos de 1 hora · WhatsApp</div>
   </div>
   <div style="color:rgba(255,255,255,.4);font-size:18px;">›</div>
 </a>
@@ -667,7 +341,6 @@
 
 <!-- ── Edit overlay ── -->
 <div id="sa-overlay">
-
   <div class="sa-sheet">
     <div class="sa-sheet-handle"></div>
     <div class="sa-sheet-head">
@@ -675,209 +348,256 @@
       <button class="sa-close-btn" onclick="saClose()">✕</button>
     </div>
 
-    <!-- Password screen -->
+    <!-- Password -->
     <div id="sa-pw-screen">
-      <p class="sa-pw-desc" style="margin-top:16px">
-        Solo para <strong>Diego</strong>. Ingresa la contraseña para editar el contenido de esta guía.
-      </p>
-      <div class="sa-input-wrap">
-        <input class="sa-input" type="password" id="sa-pw-input"
-               placeholder="Contraseña"
-               onkeydown="if(event.key==='Enter') saCheckPw()" />
-      </div>
-      <div class="sa-pw-error" id="sa-pw-error">Contraseña incorrecta. Inténtalo de nuevo.</div>
+      <p class="sa-pw-desc" style="margin-top:16px">Solo para <strong>Diego</strong>. Ingresa la contraseña para editar el contenido.</p>
+      <input class="sa-input" type="password" id="sa-pw-input" placeholder="Contraseña"
+             onkeydown="if(event.key==='Enter') saCheckPw()" style="margin-bottom:12px" />
+      <div class="sa-pw-error" id="sa-pw-error">Contraseña incorrecta.</div>
       <button class="sa-btn-primary" onclick="saCheckPw()">Ingresar</button>
-      <div class="sa-hint" style="margin-top:16px">
-        ¿Olvidaste la contraseña? Escríbele a Javier.
-      </div>
+      <div class="sa-hint">¿Olvidaste la contraseña? Escríbele a Javier.</div>
     </div>
 
-    <!-- Edit screen -->
+    <!-- Edit form -->
     <div id="sa-edit-screen">
-      <div class="sa-field">
-        <label>Nombre de la red WiFi</label>
-        <input class="sa-input" type="text" id="f-wifi-name" placeholder="Ej: CasaPAC_5G" />
-      </div>
-      <div class="sa-field">
-        <label>Contraseña WiFi</label>
-        <input class="sa-input" type="text" id="f-wifi-pass" placeholder="Ej: casapac2024" />
-      </div>
-      <div class="sa-field">
-        <label>Número WhatsApp de Diego</label>
-        <input class="sa-input" type="tel" id="f-phone"
-               placeholder="Sin + ni espacios · Ej: 56912345678" />
-      </div>
-      <div class="sa-field">
-        <label>Supermercado más cercano</label>
-        <input class="sa-input" type="text" id="f-super"
-               placeholder="Ej: Lider · 3 cuadras caminando" />
-      </div>
-      <div class="sa-field">
-        <label>Farmacia más cercana</label>
-        <input class="sa-input" type="text" id="f-farm"
-               placeholder="Ej: Cruz Verde · 2 cuadras" />
-      </div>
-      <div class="sa-field">
-        <label>Metro más cercano</label>
-        <input class="sa-input" type="text" id="f-metro"
-               placeholder="Ej: L5 · Sta. Julia · 8 min caminando" />
-      </div>
-      <div class="sa-field">
-        <label>Restaurantes recomendados</label>
-        <textarea class="sa-input" id="f-rest" rows="3"
-                  placeholder="Ej: La Choza (parrillada) · Pizzería El Barrio · Fuente 1899"></textarea>
-      </div>
+
+      <div class="sa-section-head">Contacto</div>
+      <div class="sa-field"><label>Nombre de la red WiFi</label><input class="sa-input" type="text" id="f-wifi-name" placeholder="Ej: CasaPAC_5G" /></div>
+      <div class="sa-field"><label>Contraseña WiFi</label><input class="sa-input" type="text" id="f-wifi-pass" placeholder="Ej: casapac2024" /></div>
+      <div class="sa-field"><label>WhatsApp Diego (sin + ni espacios)</label><input class="sa-input" type="tel" id="f-phone" placeholder="Ej: 56912345678" /></div>
+      <div class="sa-field"><label>Texto bajo botón WhatsApp</label><input class="sa-input" type="text" id="f-cta-sub" placeholder="Responde en menos de 1 hora · WhatsApp" /></div>
+
+      <div class="sa-section-head">Check-in / Check-out</div>
+      <div class="sa-field"><label>Hora check-in</label><input class="sa-input" type="text" id="f-checkin-time" placeholder="Desde 15:00" /></div>
+      <div class="sa-field"><label>Nota check-in</label><input class="sa-input" type="text" id="f-checkin-note" placeholder="Teclado numérico" /></div>
+      <div class="sa-field"><label>Hora check-out</label><input class="sa-input" type="text" id="f-checkout-time" placeholder="Hasta 11:00" /></div>
+      <div class="sa-field"><label>Nota check-out</label><input class="sa-input" type="text" id="f-checkout-note" placeholder="Dejar llave en la puerta" /></div>
+      <div class="sa-field"><label>Capacidad (ej: 7 huéspedes)</label><input class="sa-input" type="text" id="f-capacity-value" placeholder="7 huéspedes" /></div>
+      <div class="sa-field"><label>Detalle capacidad</label><input class="sa-input" type="text" id="f-capacity-sub" placeholder="3 hab · 4 camas · 1 baño" /></div>
+
+      <div class="sa-section-head">El barrio</div>
+      <div class="sa-field"><label>Supermercado</label><input class="sa-input" type="text" id="f-super-detail" placeholder="Ej: Lider · 3 cuadras caminando" /></div>
+      <div class="sa-field"><label>Farmacia</label><input class="sa-input" type="text" id="f-farm-detail" placeholder="Ej: Cruz Verde · 2 cuadras" /></div>
+      <div class="sa-field"><label>Metro más cercano</label><input class="sa-input" type="text" id="f-metro-detail" placeholder="Ej: L5 · Sta. Julia · 8 min caminando" /></div>
+
+      <div class="sa-section-head">Actividades</div>
+      <div class="sa-field"><label>Estadio Nacional</label><input class="sa-input" type="text" id="f-estadio-detail" placeholder="8 minutos en auto · Partidos, shows y eventos" /></div>
+      <div class="sa-field"><label>Restaurantes recomendados</label><textarea class="sa-input" id="f-rest-detail" rows="3" placeholder="Ej: La Choza · Pizzería El Barrio · ..."></textarea></div>
+
+      <div class="sa-section-head">La casa</div>
+      <div class="sa-field"><label>Parrilla</label><textarea class="sa-input" id="f-parrilla-desc" rows="2" placeholder="Disponible en el patio..."></textarea></div>
+      <div class="sa-field"><label>Mesa de ping pong</label><textarea class="sa-input" id="f-pingpong-desc" rows="2" placeholder="Disponible en el patio exterior..."></textarea></div>
+      <div class="sa-field"><label>Cocina</label><textarea class="sa-input" id="f-cocina-desc" rows="2" placeholder="Ollas, sartenes, utensilios..."></textarea></div>
+      <div class="sa-field"><label>Lavadora</label><textarea class="sa-input" id="f-lavadora-desc" rows="2" placeholder="Compartida con el propietario..."></textarea></div>
+      <div class="sa-field"><label>Zona de trabajo</label><textarea class="sa-input" id="f-workspace-desc" rows="2" placeholder="Escritorio y silla disponibles..."></textarea></div>
+
+      <div class="sa-section-head">Reglas de la casa</div>
+      <div class="sa-field"><label>Regla 1</label><input class="sa-input" type="text" id="f-rule-1" /></div>
+      <div class="sa-field"><label>Regla 2</label><input class="sa-input" type="text" id="f-rule-2" /></div>
+      <div class="sa-field"><label>Regla 3</label><input class="sa-input" type="text" id="f-rule-3" /></div>
+      <div class="sa-field"><label>Regla 4</label><input class="sa-input" type="text" id="f-rule-4" /></div>
+      <div class="sa-field"><label>Regla 5</label><input class="sa-input" type="text" id="f-rule-5" /></div>
+      <div class="sa-field"><label>Regla 6</label><input class="sa-input" type="text" id="f-rule-6" /></div>
+
+      <div class="sa-section-head">Cómo llegar al centro</div>
+      <div class="sa-field"><label>En auto</label><input class="sa-input" type="text" id="f-auto-desc" placeholder="15 minutos. Acceso directo a autopistas." /></div>
+      <div class="sa-field"><label>Transporte público</label><input class="sa-input" type="text" id="f-transporte-desc" placeholder="Red de buses Transantiago con acceso cercano." /></div>
+      <div class="sa-field"><label>Uber / inDrive</label><input class="sa-input" type="text" id="f-uber-desc" placeholder="Disponible 24 hrs. Al centro aprox. $3.000–$6.000 CLP." /></div>
 
       <div class="sa-save-row">
         <button class="sa-btn-cancel" onclick="saClose()">Cancelar</button>
-        <button class="sa-btn-save" onclick="saSave()">Guardar cambios</button>
+        <button class="sa-btn-save" id="sa-save-btn" onclick="saSave()">Guardar cambios</button>
       </div>
-      <div class="sa-saved-msg" id="sa-saved-msg">✓ Cambios guardados correctamente</div>
-      <div class="sa-hint">
-        Contraseña: <strong>casapac</strong> · Los datos se guardan en este dispositivo.
-      </div>
+      <div class="sa-saved-msg" id="sa-saved-msg">✓ Cambios guardados y publicados</div>
+      <div class="sa-err-msg" id="sa-err-msg">Error al guardar. Revisa tu conexión.</div>
+      <div class="sa-hint">Contraseña: <strong>casapac</strong></div>
     </div>
   </div>
-
 </div>
 
 <script>
 (function () {
-  var K = {
-    wifiName : 'sa_wifi_name',
-    wifiPass : 'sa_wifi_pass',
-    phone    : 'sa_phone',
-    sup      : 'sa_super',
-    farm     : 'sa_farm',
-    metro    : 'sa_metro',
-    rest     : 'sa_rest'
-  };
+  var API = 'https://dashboard-backend-frak.vercel.app/api/guide';
+  var PW  = 'casapac';
 
-  /* ── Load saved data into the page ── */
-  function load() {
-    var wn = ls(K.wifiName), wp = ls(K.wifiPass), ph = ls(K.phone);
-    var su = ls(K.sup), fa = ls(K.farm), me = ls(K.metro), re = ls(K.rest);
+  /*
+   * FIELD_MAP: [formInputId, domElementId, applyFn | null]
+   * applyFn: custom DOM update; null = set textContent directly
+   * key used in API = formInputId without 'f-', dashes → underscores
+   */
+  var MAP = [
+    ['f-wifi-name',      'wifi-name',       null],
+    ['f-wifi-pass',      'wifi-pass',       function(el,v){ el.textContent = 'Contraseña: ' + v; }],
+    ['f-phone',          'wa-link',         function(el,v){ el.href = 'https://wa.me/' + v.replace(/\D/g,''); }],
+    ['f-cta-sub',        'cta-sub',         null],
+    ['f-checkin-time',   'checkin-time',    null],
+    ['f-checkin-note',   'checkin-note',    null],
+    ['f-checkout-time',  'checkout-time',   null],
+    ['f-checkout-note',  'checkout-note',   null],
+    ['f-capacity-value', 'capacity-value',  null],
+    ['f-capacity-sub',   'capacity-sub',    null],
+    ['f-parking-note',   'parking-note',    null],
+    ['f-super-detail',   'super-detail',    function(el,v){ el.textContent=v; badge('super-badge',!!v); }],
+    ['f-farm-detail',    'farm-detail',     function(el,v){ el.textContent=v; badge('farm-badge',!!v); }],
+    ['f-metro-detail',   'metro-detail',    function(el,v){ el.textContent=v; badge('metro-badge',!!v); }],
+    ['f-estadio-detail', 'estadio-detail',  null],
+    ['f-rest-detail',    'rest-detail',     function(el,v){ el.textContent=v; badge('rest-badge',!!v); }],
+    ['f-parrilla-desc',  'parrilla-desc',   null],
+    ['f-pingpong-desc',  'pingpong-desc',   null],
+    ['f-cocina-desc',    'cocina-desc',     null],
+    ['f-lavadora-desc',  'lavadora-desc',   null],
+    ['f-workspace-desc', 'workspace-desc',  null],
+    ['f-rule-1',         'rule-1',          null],
+    ['f-rule-2',         'rule-2',          null],
+    ['f-rule-3',         'rule-3',          null],
+    ['f-rule-4',         'rule-4',          null],
+    ['f-rule-5',         'rule-5',          null],
+    ['f-rule-6',         'rule-6',          null],
+    ['f-auto-desc',      'auto-desc',       null],
+    ['f-transporte-desc','transporte-desc', null],
+    ['f-uber-desc',      'uber-desc',       null],
+  ];
 
-    if (wn) el('wifi-name').textContent = wn;
-    if (wp) el('wifi-pass').textContent = 'Contraseña: ' + wp;
-
-    if (ph) el('wa-link').href = 'https://wa.me/' + ph;
-
-    setBarrio('super', su);
-    setBarrio('farm',  fa);
-    setBarrio('metro', me);
-
-    if (re) {
-      el('rest-detail').textContent = re;
-      setBadge('rest-badge', true);
-    }
+  function key(formId) {
+    return formId.replace(/^f-/, '').replace(/-/g, '_');
   }
 
-  function setBarrio(prefix, val) {
-    if (!val) return;
-    el(prefix + '-detail').textContent = val;
-    setBadge(prefix + '-badge', true);
-  }
+  function el(id) { return document.getElementById(id); }
 
-  function setBadge(id, confirmed) {
+  function badge(id, confirmed) {
     var b = el(id);
     if (!b) return;
-    if (confirmed) {
-      b.textContent = 'Cerca';
-      b.classList.remove('pending');
-    }
+    if (confirmed) { b.textContent = 'Cerca'; b.classList.remove('pending'); }
+    else           { b.textContent = 'Por confirmar'; b.classList.add('pending'); }
+  }
+
+  /* ── Apply config object to the page ── */
+  function applyConfig(cfg) {
+    MAP.forEach(function(row) {
+      var formId = row[0], domId = row[1], fn = row[2];
+      var val = cfg[key(formId)];
+      if (!val) return;
+      var domEl = el(domId);
+      if (!domEl) return;
+      if (fn) fn(domEl, val);
+      else domEl.textContent = val;
+    });
+  }
+
+  /* ── Load from API on page start ── */
+  function loadConfig() {
+    fetch(API)
+      .then(function(r){ return r.ok ? r.json() : {}; })
+      .then(applyConfig)
+      .catch(function(){});
   }
 
   /* ── Tap trigger (7 taps on footer SA mark) ── */
   var taps = 0, tapTimer;
-  el('footer-tap').addEventListener('click', function () {
-    taps++;
+  el('footer-tap').addEventListener('click', function() {
     clearTimeout(tapTimer);
-    tapTimer = setTimeout(function () { taps = 0; }, 2000);
-    if (taps >= 7) {
-      taps = 0;
-      saOpen();
-    }
+    taps++;
+    tapTimer = setTimeout(function(){ taps = 0; }, 2000);
+    if (taps >= 7) { taps = 0; saOpen(); }
   });
 
-  /* ── Overlay logic ── */
-  window.saOpen = function () {
+  /* ── Overlay open/close ── */
+  var cachedConfig = {};
+
+  window.saOpen = function() {
     el('sa-pw-input').value = '';
     el('sa-pw-error').style.display = 'none';
     el('sa-pw-screen').style.display = 'block';
     el('sa-edit-screen').style.display = 'none';
     el('sa-sheet-title').textContent = 'Panel de administración';
     el('sa-overlay').classList.add('visible');
-    setTimeout(function () { el('sa-pw-input').focus(); }, 300);
+    setTimeout(function(){ el('sa-pw-input').focus(); }, 300);
   };
 
-  window.saClose = function () {
+  window.saClose = function() {
     el('sa-overlay').classList.remove('visible');
   };
 
-  /* close overlay on backdrop click */
-  el('sa-overlay').addEventListener('click', function (e) {
+  el('sa-overlay').addEventListener('click', function(e){
     if (e.target === this) saClose();
   });
 
-  window.saCheckPw = function () {
-    var pw = el('sa-pw-input').value.trim().toLowerCase();
-    if (pw === 'casapac') {
-      el('sa-pw-screen').style.display = 'none';
-      el('sa-sheet-title').textContent = 'Editar contenido';
-      populateForm();
-      el('sa-edit-screen').style.display = 'block';
-      el('sa-saved-msg').style.display = 'none';
-    } else {
+  /* ── Password check ── */
+  window.saCheckPw = function() {
+    if (el('sa-pw-input').value.trim().toLowerCase() !== PW) {
       el('sa-pw-error').style.display = 'block';
       el('sa-pw-input').value = '';
       el('sa-pw-input').focus();
+      return;
     }
+    el('sa-pw-error').style.display = 'none';
+    el('sa-pw-screen').style.display = 'none';
+    el('sa-sheet-title').textContent = 'Editar contenido';
+    el('sa-saved-msg').style.display = 'none';
+    el('sa-err-msg').style.display = 'none';
+
+    /* fetch fresh config then populate form */
+    fetch(API)
+      .then(function(r){ return r.ok ? r.json() : {}; })
+      .then(function(cfg){
+        cachedConfig = cfg;
+        MAP.forEach(function(row){
+          var formId = row[0];
+          var val = cfg[key(formId)];
+          var inp = el(formId);
+          if (inp) inp.value = val || '';
+        });
+        el('sa-edit-screen').style.display = 'block';
+      })
+      .catch(function(){
+        el('sa-edit-screen').style.display = 'block';
+      });
   };
 
-  function populateForm() {
-    setField('f-wifi-name', K.wifiName);
-    setField('f-wifi-pass', K.wifiPass);
-    setField('f-phone',     K.phone);
-    setField('f-super',     K.sup);
-    setField('f-farm',      K.farm);
-    setField('f-metro',     K.metro);
-    setField('f-rest',      K.rest);
-  }
+  /* ── Save to API ── */
+  window.saSave = function() {
+    var btn = el('sa-save-btn');
+    btn.disabled = true;
+    btn.textContent = 'Guardando…';
 
-  function setField(id, key) {
-    var v = ls(key);
-    if (v) el(id).value = v;
-  }
+    var body = { password: PW };
+    MAP.forEach(function(row){
+      var formId = row[0];
+      var inp = el(formId);
+      if (inp) body[key(formId)] = inp.value.trim();
+    });
 
-  window.saSave = function () {
-    var wn = val('f-wifi-name'), wp = val('f-wifi-pass');
-    var ph = val('f-phone').replace(/\D/g,'');
-    var su = val('f-super'), fa = val('f-farm');
-    var me = val('f-metro'), re = val('f-rest');
-
-    save(K.wifiName, wn); save(K.wifiPass, wp);
-    save(K.phone,    ph);
-    save(K.sup, su); save(K.farm, fa);
-    save(K.metro, me); save(K.rest, re);
-
-    load(); /* re-apply to page */
-
-    el('sa-saved-msg').style.display = 'block';
-    setTimeout(function () {
-      el('sa-saved-msg').style.display = 'none';
-      saClose();
-    }, 1800);
+    fetch(API, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(body)
+    })
+    .then(function(r){ return r.json(); })
+    .then(function(data){
+      btn.disabled = false;
+      btn.textContent = 'Guardar cambios';
+      if (data.ok) {
+        applyConfig(body); /* update page live */
+        el('sa-saved-msg').style.display = 'block';
+        el('sa-err-msg').style.display = 'none';
+        setTimeout(function(){
+          el('sa-saved-msg').style.display = 'none';
+          saClose();
+        }, 2000);
+      } else {
+        el('sa-err-msg').textContent = 'Error: ' + (data.error || 'desconocido');
+        el('sa-err-msg').style.display = 'block';
+      }
+    })
+    .catch(function(){
+      btn.disabled = false;
+      btn.textContent = 'Guardar cambios';
+      el('sa-err-msg').style.display = 'block';
+    });
   };
 
-  /* ── Helpers ── */
-  function el(id)      { return document.getElementById(id); }
-  function val(id)     { return el(id).value.trim(); }
-  function ls(key)     { try { return localStorage.getItem(key) || ''; } catch(e){ return ''; } }
-  function save(k, v)  { try { if(v) localStorage.setItem(k, v); else localStorage.removeItem(k); } catch(e){} }
-
-  /* init */
-  load();
+  /* ── Init ── */
+  loadConfig();
 })();
 </script>
 </body>
